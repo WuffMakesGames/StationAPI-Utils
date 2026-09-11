@@ -1,3 +1,3 @@
 pyinstaller --onefile cli.py --add-data data:data
-RD /S /Q "/build"
+rd /s /q "build"
 del "cli.spec"
