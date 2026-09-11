@@ -1,0 +1,37 @@
+template: blockmodel
+textures: [ "texture" ]
+assets:
+  blockstates/$id.json: '{
+      "generated": "$gen",
+      "multipart": [
+        { "apply": { "model": "$namespace:block/$id_post" }, "when": { "post": "true" } },
+        { "apply": { "model": "$namespace:block/$id_side", "uvlock": true, "y": 0 },   "when": { "east": "short" } },
+        { "apply": { "model": "$namespace:block/$id_side", "uvlock": true, "y": 180 }, "when": { "west": "short" } },
+        { "apply": { "model": "$namespace:block/$id_side", "uvlock": true, "y": 90 },  "when": { "north": "short" } },
+        { "apply": { "model": "$namespace:block/$id_side", "uvlock": true, "y": 270 }, "when": { "south": "short" } },
+        { "apply": { "model": "$namespace:block/$id_full", "uvlock": true, "y": 0 },   "when": { "east": "tall" } },
+        { "apply": { "model": "$namespace:block/$id_full", "uvlock": true, "y": 180 }, "when": { "west": "tall" } },
+        { "apply": { "model": "$namespace:block/$id_full", "uvlock": true, "y": 90 },  "when": { "north": "tall" } },
+        { "apply": { "model": "$namespace:block/$id_full", "uvlock": true, "y": 270 }, "when": { "south": "tall" } }
+      ]
+    }'
+  models/item/$id.json: '{
+      "generated": "$gen",
+      "parent": "$namespace:base/wall_inventory",
+      "textures": { "texture": "$tex_texture" }
+    }'
+  models/block/$id_post.json: '{
+      "generated": "$gen",
+      "parent": "$namespace:base/wall_post",
+      "textures": { "texture": "$tex_texture" }
+    }'
+  models/block/$id_side.json: '{
+      "generated": "$gen",
+      "parent": "$namespace:base/wall_side",
+      "textures": { "texture": "$tex_texture" }
+    }'
+  models/block/$id_full.json: '{
+      "generated": "$gen",
+      "parent": "$namespace:base/wall_full",
+      "textures": { "texture": "$tex_texture" }
+    }'

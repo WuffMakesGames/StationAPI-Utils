@@ -1,0 +1,46 @@
+template: blockmodel
+textures: [ "texture" ]
+assets:
+  blockstates/$id.json: '{
+      "generated": "$gen",
+      "variants": {
+      "facing=north,top=false,open=false": { "model": "$namespace:block/$id_bottom", "y": 90 },
+      "facing=south,top=false,open=false": { "model": "$namespace:block/$id_bottom", "y": 270 },
+      "facing=east,top=false,open=false":  { "model": "$namespace:block/$id_bottom", "y": 180 },
+      "facing=west,top=false,open=false":  { "model": "$namespace:block/$id_bottom", "y": 0 },
+
+      "facing=north,top=false,open=true":  { "model": "$namespace:block/$id_open", "y": 90 },
+      "facing=south,top=false,open=true":  { "model": "$namespace:block/$id_open", "y": 270 },
+      "facing=east,top=false,open=true":   { "model": "$namespace:block/$id_open", "y": 180 },
+      "facing=west,top=false,open=true":   { "model": "$namespace:block/$id_open", "y": 0 },
+
+      "facing=north,top=true,open=false":  { "model": "$namespace:block/$id_top", "y": 90 },
+      "facing=south,top=true,open=false":  { "model": "$namespace:block/$id_top", "y": 270 },
+      "facing=east,top=true,open=false":   { "model": "$namespace:block/$id_top", "y": 180 },
+      "facing=west,top=true,open=false":   { "model": "$namespace:block/$id_top", "y": 0 },
+
+      "facing=north,top=true,open=true":   { "model": "$namespace:block/$id_open", "y": 90 },
+      "facing=south,top=true,open=true":   { "model": "$namespace:block/$id_open", "y": 270 },
+      "facing=east,top=true,open=true":    { "model": "$namespace:block/$id_open", "y": 180 },
+      "facing=west,top=true,open=true":    { "model": "$namespace:block/$id_open", "y": 0 }
+      }
+    }'
+  models/item/$id.json: '{
+      "generated": "$gen",
+      "parent": "$namespace:block/$id"
+    }'
+  models/block/$id_top.json: '{
+      "generated": "$gen",
+      "parent": "$namespace:base/trapdoor_top",
+      "textures": { "texture": "$tex_texture" }
+    }'
+  models/block/$id_bottom.json: '{
+      "generated": "$gen",
+      "parent": "$namespace:base/trapdoor_bottom",
+      "textures": { "texture": "$tex_texture" }
+    }'
+  models/block/$id_open.json: '{
+      "generated": "$gen",
+      "parent": "$namespace:base/trapdoor_open",
+      "textures": { "texture": "$tex_texture" }
+    }'

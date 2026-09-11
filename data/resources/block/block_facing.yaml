@@ -1,0 +1,29 @@
+template: blockmodel
+textures: [ "sides", "front" ]
+assets:
+  blockstates/$id.json: '{
+      "generated": "$gen",
+      "variants": {
+        "facing=north": { "model": "$namespace:block/$id", "y": 0 },
+        "facing=south": { "model": "$namespace:block/$id", "y": 180 },
+        "facing=east":  { "model": "$namespace:block/$id", "y": 90 },
+        "facing=west":  { "model": "$namespace:block/$id", "y": 270 }
+      }
+    }'
+  models/item/$id.json: '{
+      "generated": "$gen",
+      "parent": "$namespace:block/$id"
+    }'
+  models/block/$id.json: '{
+      "generated": "$gen",
+      "parent": "block/cube",
+      "textures": {
+        "up": "$tex_sides",
+        "down": "$tex_sides",
+        "north": "$tex_sides",
+        "south": "$tex_sides",
+        "west": "$tex_sides",
+        "east": "$tex_front",
+        "particle": "#east"
+      }
+    }'

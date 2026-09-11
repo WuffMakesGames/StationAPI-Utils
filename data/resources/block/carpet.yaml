@@ -1,0 +1,17 @@
+template: blockmodel
+textures: [ "texture" ]
+assets:
+  blockstates/$id.json: '{
+      "generated": "$gen",
+      "variants": { "": { "model": "$namespace:block/$id" } }
+    }'
+  models/item/$id.json: '{
+      "generated": "$gen",
+      "parent": "$namespace:block/$id"
+    }'
+  models/block/$id.json: '{
+      "generated": "$gen",
+      "parent": "$namespace:base/carpet",
+      "textures": { "texture": "$tex_texture" }
+    }'
+  

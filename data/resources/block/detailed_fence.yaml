@@ -1,0 +1,28 @@
+template: blockmodel
+textures: [ "texture" ]
+assets:
+  blockstates/$id.json: '{
+      "generated": "$gen",
+      "multipart": [
+        { "apply": { "model": "$namespace:block/$id_post" } },
+        { "apply": { "model": "$namespace:block/$id_side", "uvlock": false }, "when": { "east": "true" } },
+        { "apply": { "model": "$namespace:block/$id_side", "uvlock": false, "y": 180 }, "when": { "west": "true" } },
+        { "apply": { "model": "$namespace:block/$id_side", "uvlock": false, "y": 90 }, "when": { "north": "true" } },
+        { "apply": { "model": "$namespace:block/$id_side", "uvlock": false, "y": 270 }, "when": { "south": "true" } }
+      ]
+    }'
+  models/item/$id.json: '{
+      "generated": "$gen",
+      "parent": "$namespace:base/detailed_fence_inventory",
+      "textures": { "texture": "$tex_texture" }
+    }'
+  models/block/$id_post.json: '{
+      "generated": "$gen",
+      "parent": "$namespace:base/detailed_fence_post",
+      "textures": { "texture": "$tex_texture" }
+    }'
+  models/block/$id_side.json: '{
+      "generated": "$gen",
+      "parent": "$namespace:base/detailed_fence_side",
+      "textures": { "texture": "$tex_texture" }
+    }'
