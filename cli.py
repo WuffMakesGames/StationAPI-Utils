@@ -1,11 +1,18 @@
+import argparse
 from modules.registry import Registry
 from modules.loader import Loader
 from modules.app import CLI
 import os
 
-directory = os.path.dirname(__file__)
+parser = argparse.ArgumentParser("stationapi_utils")
+parser.add_argument("-namespace", help="Define the mod namespace", type=str, required=False)
+args = parser.parse_args()
+
 namespace = "morebeta"
 resources_path = "D:/Projects/Minecraft Modding/Babric Mods/MoreBetaWorkspace/morebeta/src/main/generated/resources/"
+
+directory = os.path.dirname(__file__)
+if directory == "": directory = os.getcwd()
 
 registry = Registry(namespace)
 loader = Loader(registry)
