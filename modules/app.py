@@ -2,6 +2,7 @@ from modules.registry import Registry
 from modules.resource import Resource
 from modules.template import TemplateGroup
 from modules.printing import prettyprint as print, clear
+from modules.colors import COLORS
 
 class CLI:
 	def __init__(self, registry: Registry, resource_path: str):
@@ -74,19 +75,22 @@ class CLI:
 			if response.count(":") == 0: response = f"{self.namespace}:block/{response}"
 			tags.setdefault(f"$tex_{tex}", response)
 		
-		# Get custom values
+		# Get custom tags
 		for entry in resource.yaml.get("tags", []):
 			response = input(f"Custom Tag #{entry}: ")
 			tags.setdefault(f"${entry}", response)
 
-		# Generate mod files
-		clear()
-		resource.writeToDisk(
-			resource_path=self.resource_path,
-			namespace=self.namespace,
-			id=response_id,
-			tags=tags
-		)
+		# Generate colored resources
+		if response_id.count("!c"):
+			clear()
+			for color in COLORS:
+				colored_tags = {}
+				for key,tag in tags.items(): colored_tags[key] = tag.replace("!c", color)
+				resource.writeToDisk(self.resource_path, self.namespace, response_id.replace("!c", color), colored_tags)
+			print(f"> Generated 16 colored {resource.name}(s)", color="green")
 
-		# Finished with no errors
-		print(f"> Generated {resource.name}", color="green")
+		# Generate base resources
+		else:
+			clear()
+			resource.writeToDisk(self.resource_path, self.namespace, response_id, tags)
+			print(f"> Generated {resource.name}", color="green")
