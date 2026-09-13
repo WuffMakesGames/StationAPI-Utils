@@ -1,0 +1,24 @@
+template: blockmodel
+textures: [ "up", "down", "north", "south", "east", "west", "particle" ]
+assets:
+  blockstates/$id.json: '{
+      "generated": "$gen",
+      "variants": { "": { "model": "$namespace:block/$id" } }
+    }'
+  models/item/$id.json: '{
+      "generated": "$gen",
+      "parent": "$namespace:block/$id"
+    }'
+  models/block/$id.json: '{
+      "generated": "$gen",
+      "parent": "block/cube",
+      "textures": {
+        "up": "$tex_up",
+        "down": "$tex_down",
+        "north": "$tex_north",
+        "south": "$tex_south",
+        "west": "$tex_west",
+        "east": "$tex_east",
+        "particle": "$tex_particle"
+      }
+    }'
