@@ -1,0 +1,68 @@
+template: blockmodel
+textures: [ "top", "bottom" ]
+assets:
+  blockstates/$id.json: '{
+      "generated": "$gen",
+      "variants": {
+        "top=true,facing=west,right=true,open=false":    { "model": "$namespace:block/$id_top_opposite" },
+        "top=true,facing=west,right=true,open=true":     { "model": "$namespace:block/$id_top", "y": -90 },
+        "top=true,facing=west,right=false,open=false":   { "model": "$namespace:block/$id_top" },
+        "top=true,facing=west,right=false,open=true":    { "model": "$namespace:block/$id_top_opposite", "y": 90 },
+        
+        "top=false,facing=west,right=true,open=false":   { "model": "$namespace:block/$id_bottom_opposite" },
+        "top=false,facing=west,right=true,open=true":    { "model": "$namespace:block/$id_bottom", "y": -90 },
+        "top=false,facing=west,right=false,open=false":  { "model": "$namespace:block/$id_bottom" },
+        "top=false,facing=west,right=false,open=true":   { "model": "$namespace:block/$id_bottom_opposite", "y": 90 },
+        
+        "top=true,facing=east,right=true,open=false":    { "model": "$namespace:block/$id_top_opposite", "y": 180 },
+        "top=true,facing=east,right=true,open=true":     { "model": "$namespace:block/$id_top", "y": 90 },
+        "top=true,facing=east,right=false,open=false":   { "model": "$namespace:block/$id_top", "y": 180},
+        "top=true,facing=east,right=false,open=true":    { "model": "$namespace:block/$id_top_opposite", "y": -90 },
+        
+        "top=false,facing=east,right=true,open=false":   { "model": "$namespace:block/$id_bottom_opposite", "y": 180 },
+        "top=false,facing=east,right=true,open=true":    { "model": "$namespace:block/$id_bottom", "y": 90 },
+        "top=false,facing=east,right=false,open=false":  { "model": "$namespace:block/$id_bottom", "y": 180 },
+        "top=false,facing=east,right=false,open=true":   { "model": "$namespace:block/$id_bottom_opposite", "y": -90 },
+        
+        "top=true,facing=north,right=true,open=false":   { "model": "$namespace:block/$id_top_opposite", "y": 90 },
+        "top=true,facing=north,right=true,open=true":    { "model": "$namespace:block/$id_top", "y": 0 },
+        "top=true,facing=north,right=false,open=false":  { "model": "$namespace:block/$id_top", "y": 90 },
+        "top=true,facing=north,right=false,open=true":   { "model": "$namespace:block/$id_top_opposite", "y": 180 },
+        
+        "top=false,facing=north,right=true,open=false":  { "model": "$namespace:block/$id_bottom_opposite", "y": 90 },
+        "top=false,facing=north,right=true,open=true":   { "model": "$namespace:block/$id_bottom", "y": 0 },
+        "top=false,facing=north,right=false,open=false": { "model": "$namespace:block/$id_bottom", "y": 90 },
+        "top=false,facing=north,right=false,open=true":  { "model": "$namespace:block/$id_bottom_opposite", "y": 180 },
+        
+        "top=true,facing=south,right=true,open=false":   { "model": "$namespace:block/$id_top_opposite", "y": -90 },
+        "top=true,facing=south,right=true,open=true":    { "model": "$namespace:block/$id_top", "y": -90 },
+        "top=true,facing=south,right=false,open=false":  { "model": "$namespace:block/$id_top", "y": -90 },
+        "top=true,facing=south,right=false,open=true":   { "model": "$namespace:block/$id_top_opposite", "y": 90 },
+        
+        "top=false,facing=south,right=true,open=false":  { "model": "$namespace:block/$id_bottom_opposite", "y": -90 },
+        "top=false,facing=south,right=true,open=true":   { "model": "$namespace:block/$id_bottom", "y": -180 },
+        "top=false,facing=south,right=false,open=false": { "model": "$namespace:block/$id_bottom", "y": -90 },
+        "top=false,facing=south,right=false,open=true":  { "model": "$namespace:block/$id_bottom_opposite", "y": 0 }
+
+      }
+    }'
+  models/block/$id_top.json: '{
+      "generated": "$gen",
+      "parent": "$namespace:base/door",
+      "textures": { "texture": "$tex_top" }
+    }'
+  models/block/$id_top_opposite.json: '{
+      "generated": "$gen",
+      "parent": "$namespace:base/door_opposite",
+      "textures": { "texture": "$tex_top" }
+    }'
+  models/block/$id_bottom.json: '{
+      "generated": "$gen",
+      "parent": "$namespace:base/door",
+      "textures": { "texture": "$tex_bottom" }
+    }'
+  models/block/$id_bottom_opposite.json: '{
+      "generated": "$gen",
+      "parent": "$namespace:base/door_opposite",
+      "textures": { "texture": "$tex_bottom" }
+    }'
