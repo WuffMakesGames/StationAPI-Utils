@@ -43,7 +43,6 @@ assets:
         "top=false,facing=south,right=true,open=true":   { "model": "$namespace:block/$id_bottom", "y": -180 },
         "top=false,facing=south,right=false,open=false": { "model": "$namespace:block/$id_bottom", "y": -90 },
         "top=false,facing=south,right=false,open=true":  { "model": "$namespace:block/$id_bottom_opposite", "y": 0 }
-
       }
     }'
   models/block/$id_top.json: '{
