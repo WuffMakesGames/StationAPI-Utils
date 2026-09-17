@@ -1,5 +1,5 @@
 template: blockmodel
-textures: [ "top", "bottom" ]
+textures: [ "top", "bottom", "item" ]
 assets:
   blockstates/$id.json: '{
       "generated": "$gen",
@@ -35,15 +35,20 @@ assets:
         "top=false,facing=north,right=false,open=true":  { "model": "$namespace:block/$id_bottom_opposite", "y": 180 },
         
         "top=true,facing=south,right=true,open=false":   { "model": "$namespace:block/$id_top_opposite", "y": -90 },
-        "top=true,facing=south,right=true,open=true":    { "model": "$namespace:block/$id_top", "y": -90 },
+        "top=true,facing=south,right=true,open=true":    { "model": "$namespace:block/$id_top", "y": -180 },
         "top=true,facing=south,right=false,open=false":  { "model": "$namespace:block/$id_top", "y": -90 },
-        "top=true,facing=south,right=false,open=true":   { "model": "$namespace:block/$id_top_opposite", "y": 90 },
+        "top=true,facing=south,right=false,open=true":   { "model": "$namespace:block/$id_top_opposite", "y": 0  },
         
         "top=false,facing=south,right=true,open=false":  { "model": "$namespace:block/$id_bottom_opposite", "y": -90 },
         "top=false,facing=south,right=true,open=true":   { "model": "$namespace:block/$id_bottom", "y": -180 },
         "top=false,facing=south,right=false,open=false": { "model": "$namespace:block/$id_bottom", "y": -90 },
         "top=false,facing=south,right=false,open=true":  { "model": "$namespace:block/$id_bottom_opposite", "y": 0 }
       }
+    }'
+  models/item/$id.json: '{
+      "generated": "$gen",
+      "parent": "item/generated",
+      "textures": { "layer0": "$tex_item" }
     }'
   models/block/$id_top.json: '{
       "generated": "$gen",
