@@ -1,53 +1,88 @@
 from modules.printing import prettyprint as print
+from typing import Literal
 import yaml, json, os
 
-def load_yaml(filename: str):
-	file = open(filename, "r")
-	data = yaml.load(file, Loader=yaml.FullLoader)
-	file.close()
-	return data
+ASSET_TYPE = Literal["assets", "data"]
 
-def write_file(filename: str, text: str):
-	file = open(filename, "w")
-	file.write(text)
-	file.close()
-	return text
-
+### Resource =============================================================
 class Resource:
-	def __str__(self):
-		return f"Resource {self.name}(\"{self.filename}\")"
-	
 	def __init__(self, filename: str):
 		self.filename = filename
-		self.name, ext = os.path.splitext(os.path.basename(filename))
+		self.name = filename
 
-		self.yaml: dict[str, object] = load_yaml(filename)
-		self.template = self.yaml["template"]
+		self.template: str = "blockmodel"
+		self.textures: list = []
+		self.tags: list = []
+
+		self.assets: dict[str, str] = {}
+		self.data: dict[str, str] = {}
+
+	def __str__(self): return f"Resource {self.name}(\"{self.filename}\")"
 	
-	def writeToDisk(self, resource_path: str, namespace: str, id: str, tags: dict[str, str]):
-		self.writeFiles(self.yaml.get("assets"), (resource_path + f"assets/{namespace}/stationapi/"), namespace, id, tags)
-		self.writeFiles(self.yaml.get("data"),   (resource_path + f"data/{namespace}/stationapi/"), namespace, id, tags)
+### Resource =============================================================
+class ResourceFile:
+	def __init__(self, filename: str, contents: str):
+		self.filename = filename
+		self.contents = contents
 
-	### Writes a collection of resource files to the disk.
-	def writeFiles(self, files: dict[str, str], root: str, namespace: str, id: str, tags: dict[str, str]):
-		if files is None: return
-		for key, value in files.items():
-			filename = os.path.join(root + key).replace("$id", id)
-			self.writeFile(filename, value, namespace, id, tags)
+### Loader ===============================================================
+class ResourceLoader:
+	def load(self, filename: str) -> Resource:
+		resource: Resource = Resource(filename)
+		with open(filename, "r") as f:
+			data: dict[str, object] = yaml.load(f, Loader=yaml.FullLoader)
+
+		# Load elements from yaml
+		resource.template = data.get("template", "blockmodel")
+		resource.textures = data.get("textures", [])
+		resource.tags = data.get("tags", [])
+
+		resource.assets = data.get("assets", {})
+		resource.data = data.get("data", {})
+
+		# Return resource
+		return resource
+
+### Saver ================================================================
+class ResourceSaver:
+	def __init__(self, path: str, namespace: str):
+		self.path = path
+		self.namespace = namespace
+
+	def save(self, resource: Resource, id: str, tags: dict[str, str]):
+		self.__saveFiles(resource, "assets", id, tags)
+		self.__saveFiles(resource, "data", id, tags)
+
+	def __saveFiles(self, resource: Resource, type: ASSET_TYPE, id: str, tags: dict[str, str]):
+		root: str = f"{self.path}/{type}/{self.namespace}/stationapi/"
+
+		# Get file list from resource
+		files: dict[str, str] = None
+		if type == "assets": files = resource.assets
+		elif type == "data": files = resource.data
+
+		# Save each file
+		for file, contents in files.items():
+			filename = (root + file).replace("$id", id)
+			self.__saveFile(resource, ResourceFile(filename, contents), id, tags)
 	
-	### Writes a resource file to the disk.
-	def writeFile(self, filename: str, text: str, namespace: str, id: str, tags: dict[str, str]):
-		if filename.endswith(".json"): text = json.dumps(json.loads(text), indent=4)
+	def __saveFile(self, resource: Resource, file: ResourceFile, id: str, tags: dict[str, str]):
+		filename = file.filename
+		contents = file.contents
 
-		# Replace tags
-		for tag, value in tags.items():
-			text = text.replace(tag, value)
+		# Prettify json contents
+		if filename.endswith(".json"): contents = json.dumps(json.loads(contents), indent=4)
 		
+		# Replace tags
+		for tag, value in tags.items(): contents = contents.replace(tag, value)
+
 		# Replace keys
-		text = text.replace("$gen", self.name)
-		text = text.replace("$namespace", namespace)
-		text = text.replace("$id", id)
+		contents = contents.replace("$gen", resource.name)
+		contents = contents.replace("$namespace", self.namespace)
+		contents = contents.replace("$id", id)
 
 		# Write the file
-		print(f"> Writing: \"{filename}\"", color="cyan")
-		write_file(filename, text)
+		print(f"> Writing \"{filename}\"", color="cyan")
+		if not os.path.exists(os.path.dirname(filename)):
+			os.makedirs(os.path.dirname(filename))
+		with open(filename, "w") as f: f.write(contents)

@@ -1,0 +1,8 @@
+{
+    "generated": "block",
+    "variants": {
+        "": {
+            "model": "morebeta:block/meep"
+        }
+    }
+}

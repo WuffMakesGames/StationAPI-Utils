@@ -5,6 +5,9 @@ class Registry:
 		self.map: dict[str, Resource] = {}
 		self.namespace = namespace
 
+	def clear(self) -> None:
+		self.map.clear()
+
 	def put(self, key: str, resource: Resource) -> None:
 		self.map.setdefault(key, resource)
 

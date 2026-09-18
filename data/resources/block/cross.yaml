@@ -1,0 +1,17 @@
+template: blockmodel
+textures: [ "cross" ]
+assets:
+  blockstates/$id.json: '{
+      "generated": "$gen",
+      "variants": { "": { "model": "$namespace:block/$id" } }
+    }'
+  models/item/$id.json: '{
+      "generated": "$gen",
+      "parent": "item/generated",
+      "textures": { "layer0": "$tex_cross" }
+    }'
+  models/block/$id.json: '{
+      "generated": "$gen",
+      "parent": "block/cross",
+      "textures": { "cross": "$tex_cross" }
+    }'

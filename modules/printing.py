@@ -76,7 +76,7 @@ On_IPurple = '\033[0;105m'  # Purple
 On_ICyan = '\033[0;106m'    # Cyan
 On_IWhite = '\033[0;107m'   # White
 
-def prettyprint(*args, color: COLORS=None):
+def prettyprint(*args, color: COLORS=None, intense: bool=False, underline: bool=False):
 	text = " ".join(args)
 
 	if color == "red": 		print(f"{Red}{text}{Color_Off}")

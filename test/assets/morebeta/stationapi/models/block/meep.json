@@ -1,0 +1,7 @@
+{
+    "generated": "block",
+    "parent": "block/cube_all",
+    "textures": {
+        "all": "morebeta:block/meep"
+    }
+}

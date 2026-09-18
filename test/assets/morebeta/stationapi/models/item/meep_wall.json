@@ -1,0 +1,7 @@
+{
+    "generated": "wall",
+    "parent": "morebeta:base/wall_inventory",
+    "textures": {
+        "texture": "morebeta:block/meep"
+    }
+}

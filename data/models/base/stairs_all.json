@@ -1,0 +1,12 @@
+{
+  "parent": "morebeta:base/stairs",
+  "textures": {
+	"particle": "#all",
+	"north": "#all",
+	"south": "#all",
+	"east": "#all",
+	"west": "#all",
+	"up": "#all",
+	"down": "#all"
+  }
+}
