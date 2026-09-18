@@ -2,8 +2,8 @@
 	"format_version": "1.21.11",
 	"credit": "Made with Blockbench",
 	"textures": {
-		"particle": "morebeta:block/flower_pot",
-		"pot": "morebeta:block/flower_pot",
+		"particle": "#pot",
+		"pot": "block/clay",
 		"soil": "block/dirt"
 	},
 	"elements": [
