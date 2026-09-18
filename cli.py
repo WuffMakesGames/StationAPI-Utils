@@ -11,7 +11,7 @@ args = parser.parse_args()
 # User directory
 namespace = "morebeta"
 resources_path = "D:/Projects/Minecraft Modding/Babric Mods/MoreBetaWorkspace/morebeta/src/main/generated/resources/"
-resources_path = "test/"
+# resources_path = "test/"
 
 # App directory
 directory = os.path.dirname(__file__)

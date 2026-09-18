@@ -1,6 +1,6 @@
 from modules.registry import Registry
 from modules.resource import Resource, ResourceLoader, ResourceSaver
-import os
+import os, shutil
 
 class App:
 	def __init__(self, namespace: str, resource_path: str, working_directory: str):
@@ -12,7 +12,13 @@ class App:
 		self.registry = Registry(namespace)
 		self.loader = ResourceLoader()
 		self.saver = ResourceSaver(resource_path, namespace)
+
+		self.copyModels()
 	
+	def copyModels(self):
+		target = self.resource_path + f"assets/{self.registry.namespace}/stationapi/models/"
+		shutil.copytree(self.working_directory + "/data/models/", target, dirs_exist_ok=True)
+
 	def loadResources(self):
 		self.registry.clear()
 		path = self.working_directory + "/data/resources"
