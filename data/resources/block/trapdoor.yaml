@@ -27,7 +27,7 @@ assets:
     }'
   models/item/$id.json: '{
       "generated": "$gen",
-      "parent": "$namespace:block/$id"
+      "parent": "$namespace:block/$id_bottom"
     }'
   models/block/$id_top.json: '{
       "generated": "$gen",
