@@ -1,0 +1,29 @@
+template: blockmodel
+textures: [ "0", "1", "2", "3", "4", "5", "6", "7" ]
+assets:
+  blockstates/$id.json: '{
+      "generated": "$gen",
+      "variants": {
+        "age=0": { "model": "$namespace:block/$id_stage0" },
+        "age=1": { "model": "$namespace:block/$id_stage1" },
+        "age=2": { "model": "$namespace:block/$id_stage2" },
+        "age=3": { "model": "$namespace:block/$id_stage3" },
+        "age=4": { "model": "$namespace:block/$id_stage4" },
+        "age=5": { "model": "$namespace:block/$id_stage5" },
+        "age=6": { "model": "$namespace:block/$id_stage6" },
+        "age=7": { "model": "$namespace:block/$id_stage7" }
+      }
+    }'
+  models/item/$id.json: '{
+      "generated": "$gen",
+      "parent": "item/generated",
+      "textures": { "layer0": "$tex_7" }
+    }'
+  models/block/$id_stage0.json: '{ "generated": "$gen", "parent": "$namespace:base/crop_cross", "textures": { "cross": "$tex_0" } }'
+  models/block/$id_stage2.json: '{ "generated": "$gen", "parent": "$namespace:base/crop_cross", "textures": { "cross": "$tex_2" } }'
+  models/block/$id_stage1.json: '{ "generated": "$gen", "parent": "$namespace:base/crop_cross", "textures": { "cross": "$tex_1" } }'
+  models/block/$id_stage3.json: '{ "generated": "$gen", "parent": "$namespace:base/crop_cross", "textures": { "cross": "$tex_3" } }'
+  models/block/$id_stage4.json: '{ "generated": "$gen", "parent": "$namespace:base/crop_cross", "textures": { "cross": "$tex_4" } }'
+  models/block/$id_stage5.json: '{ "generated": "$gen", "parent": "$namespace:base/crop_cross", "textures": { "cross": "$tex_5" } }'
+  models/block/$id_stage6.json: '{ "generated": "$gen", "parent": "$namespace:base/crop_cross", "textures": { "cross": "$tex_6" } }'
+  models/block/$id_stage7.json: '{ "generated": "$gen", "parent": "$namespace:base/crop_cross", "textures": { "cross": "$tex_7" } }'
