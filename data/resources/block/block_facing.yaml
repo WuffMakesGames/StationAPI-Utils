@@ -1,5 +1,5 @@
 template: blockmodel
-textures: [ "sides", "front" ]
+textures: [ "sides", "front", "up", "down" ]
 assets:
   blockstates/$id.json: '{
       "generated": "$gen",
@@ -18,8 +18,8 @@ assets:
       "generated": "$gen",
       "parent": "block/cube",
       "textures": {
-        "up": "$tex_sides",
-        "down": "$tex_sides",
+        "up": "$tex_up",
+        "down": "$tex_down",
         "north": "$tex_sides",
         "south": "$tex_sides",
         "west": "$tex_sides",
